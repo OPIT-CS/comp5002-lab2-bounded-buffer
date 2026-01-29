@@ -19,7 +19,7 @@ Similarly, if a consumer skips cv_not_full.notify() producers waiting for space 
 4. **Mutual exclusion**  
 If we remove with self.lock: from put and get, multiple threads could access and modify the buffer at the same time. This can cause serious issues:
 - Lost items: two producers write over each other.
-- Duplicate or missing items: consumers read the same item twice or skip items.
+- Duplicate or missing items: consumers read the same item twice or skip items
 - Corrupted counts / broken state: the buffer’s len() may not match actual items.
 - Out-of-order operations: items can appear consumed before being added.
 Locks ensure only one thread manipulates the buffer at a time, preventing all these problems.
